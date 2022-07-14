@@ -37,7 +37,7 @@ export const styles = (darkMode:boolean)=>StyleSheet.create({
          justifyContent:'center',
          alignItems:'center',
          flexDirection:'row',
-         marginTop:15
+         marginTop:15,
      },
      darkModeText:{
          fontFamily:Fonts.lightFont,
