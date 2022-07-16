@@ -63,6 +63,12 @@ export const styles = (darkMode:boolean)=>StyleSheet.create({
         marginRight:15,
         color:darkMode?darkTheme.componentColor:lightTheme.componentColor
     },
+    activityIndicator:{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center',
+       
+    }
     
 
 
