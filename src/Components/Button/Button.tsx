@@ -7,8 +7,8 @@ interface IProps extends TouchableOpacityProps{
 }
 const Button:FC<IProps>=({buttonTitle,theme='primary',...rest})=>{
     return(
-        <TouchableOpacity style={styles[theme].buttonContainer} {...rest}>
-            <Text style={styles[theme].buttonText}>{buttonTitle}</Text>
+        <TouchableOpacity testID='touchable-button' style={styles[theme].buttonContainer} {...rest}>
+            <Text testID='button-title' style={styles[theme].buttonText}>{buttonTitle}</Text>
         </TouchableOpacity>
     )
 }
