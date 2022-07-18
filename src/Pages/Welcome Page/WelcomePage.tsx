@@ -5,11 +5,10 @@ import Button from '../../Components/Button';
 import { RootStackParamList } from '../RootStackParamList';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
-import { useSelector,useDispatch, Provider } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import GetLocation from 'react-native-get-location'
 import VerifyLocationModal from '../../Components/Modals/Verify Location Modal';
-;
 const WelcomePage =()=>{
     const darkMode=useSelector((selector:any)=>selector.isDarkModeEnabled);
     const [verifyLocationModalVisible,setVerifyLocationModalVisible]=useState<boolean>(false);
@@ -35,15 +34,15 @@ const WelcomePage =()=>{
     useEffect(()=>{
         getThemeData();
     },[]);
-    function handleGetUserLocation(){
+    async function handleGetUserLocation(){
         setUserLocationData(null);
         GetLocation.getCurrentPosition({
             enableHighAccuracy: true,
             timeout: 15000,
         })
         .then(location => {
-            handleVerifyModalVisible();
             setUserLocationData(location);
+            handleVerifyModalVisible();
         })
         .catch(error => {
             const { code, message } = error;
@@ -69,12 +68,12 @@ const WelcomePage =()=>{
     
     return(
         
-        <View style={themeColors.container}>
-            <VerifyLocationModal isVisible={verifyLocationModalVisible} onClose={handleVerifyModalVisible} location={userLocationData}></VerifyLocationModal>
-            <View style={themeColors.imageContainer} testID='welcome-page-images'>
-            <Image style={themeColors.leftIcon} source={require('../../../assets/images/WelcomeIcon1.png')}></Image>
-                <Image style={themeColors.rightIcon} source={require('../../../assets/images/WelcomeIcon2.png')}></Image>
-                <Image style={themeColors.leftIcon} source={require('../../../assets/images/WelcomeIcon3.png')}></Image>
+        <View style={themeColors.container} testID='welcome-page-container'>
+            {userLocationData ? <VerifyLocationModal isVisible={verifyLocationModalVisible} onClose={handleVerifyModalVisible} location={userLocationData}></VerifyLocationModal>:null}
+            <View style={themeColors.imageContainer} testID='welcome-page-image-container'>
+            <Image style={themeColors.leftIcon} source={require('../../../assets/images/WelcomeIcon1.png')} testID='welcome-page-images-icon1'></Image>
+                <Image style={themeColors.rightIcon} source={require('../../../assets/images/WelcomeIcon2.png')} testID='welcome-page-images-icon2'></Image>
+                <Image style={themeColors.leftIcon} source={require('../../../assets/images/WelcomeIcon3.png')} testID='welcome-page-images-icon3'></Image>
             </View>
             <Text style={themeColors.welcomeText}>Welcome to WeatherApp.</Text>
             <Text style={themeColors.welcomeText}>So let’s started!</Text>

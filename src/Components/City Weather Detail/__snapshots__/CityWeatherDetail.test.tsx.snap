@@ -1,0 +1,271 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match with snapshot with testCity 1`] = `
+Array [
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "marginTop": 15,
+      }
+    }
+  >
+    <Text
+      allowFontScaling={false}
+      selectable={false}
+      style={
+        Array [
+          Object {
+            "color": "#5BA7FB",
+            "fontSize": 20,
+          },
+          undefined,
+          Object {
+            "fontFamily": "Material Design Icons",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {},
+        ]
+      }
+      testID="weather-detail-card-earth-icon"
+    >
+      󰇧
+    </Text>
+    <Text
+      style={
+        Object {
+          "color": "#161616",
+          "fontFamily": "OpenSans-Regular",
+          "fontSize": 15,
+          "marginRight": 15,
+          "paddingLeft": 5,
+        }
+      }
+      testID="weather-detail-card-country-text"
+    >
+      TestCountry
+    </Text>
+  </View>,
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "marginTop": 15,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "marginBottom": 10,
+        }
+      }
+    >
+      <Text
+        allowFontScaling={false}
+        selectable={false}
+        style={
+          Array [
+            Object {
+              "color": "#5BA7FB",
+              "fontSize": 20,
+            },
+            undefined,
+            Object {
+              "fontFamily": "Material Design Icons",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            Object {},
+          ]
+        }
+      >
+        󰈈
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#161616",
+            "fontFamily": "OpenSans-Regular",
+            "fontSize": 15,
+            "marginRight": 15,
+            "paddingLeft": 5,
+          }
+        }
+        testID="weather-detail-card-visibility-text"
+      >
+        Visibility 
+        10
+         KM
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "marginBottom": 10,
+        }
+      }
+    >
+      <Text
+        allowFontScaling={false}
+        selectable={false}
+        style={
+          Array [
+            Object {
+              "color": "#5BA7FB",
+              "fontSize": 20,
+            },
+            undefined,
+            Object {
+              "fontFamily": "Material Design Icons",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            Object {},
+          ]
+        }
+      >
+        󰔏
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#161616",
+            "fontFamily": "OpenSans-Regular",
+            "fontSize": 15,
+            "marginRight": 15,
+            "paddingLeft": 5,
+          }
+        }
+        testID="weather-detail-card-feels-text"
+      >
+        Feels 
+        15.5
+        °C
+      </Text>
+    </View>
+  </View>,
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "marginTop": 15,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "marginBottom": 10,
+        }
+      }
+    >
+      <Text
+        allowFontScaling={false}
+        selectable={false}
+        style={
+          Array [
+            Object {
+              "color": "#5BA7FB",
+              "fontSize": 20,
+            },
+            undefined,
+            Object {
+              "fontFamily": "Material Design Icons",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            Object {},
+          ]
+        }
+      >
+        󰞍
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#161616",
+            "fontFamily": "OpenSans-Regular",
+            "fontSize": 15,
+            "marginRight": 15,
+            "paddingLeft": 5,
+          }
+        }
+        testID="weather-detail-card-humidity-text"
+      >
+        Humidity 
+        5
+         KM
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "marginBottom": 10,
+        }
+      }
+    >
+      <Text
+        allowFontScaling={false}
+        selectable={false}
+        style={
+          Array [
+            Object {
+              "color": "#5BA7FB",
+              "fontSize": 20,
+            },
+            undefined,
+            Object {
+              "fontFamily": "Material Design Icons",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            Object {},
+          ]
+        }
+      >
+        󰖝
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#161616",
+            "fontFamily": "OpenSans-Regular",
+            "fontSize": 15,
+            "marginRight": 15,
+            "paddingLeft": 5,
+          }
+        }
+        testID="weather-detail-card-wind-text"
+      >
+        Wind 
+        20
+         KM
+      </Text>
+    </View>
+  </View>,
+]
+`;

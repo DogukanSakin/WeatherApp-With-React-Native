@@ -26,8 +26,8 @@ const CityWeatherDetailCardModal:FC<IModalProps>=({isVisible,onClose,city})=>{
     return(
         <Modal isVisible={isVisible} onSwipeComplete={onClose} onBackdropPress={onClose} style={modalTheme.modalContainer}>
             <View style={modalTheme.container}>
-                <Image source={icon} style={modalTheme.image}></Image>
-                <Text style={modalTheme.cityText}>{city.cityName} <Text style={modalTheme.degreeText}>{city.temp_c}°C</Text></Text>
+                <Image source={icon} style={modalTheme.image} testID='city-weather-card-detail-modal-image'></Image>
+                <Text style={modalTheme.cityText} testID='city-weather-card-detail-modal-cityText'>{city.cityName} <Text style={modalTheme.degreeText} testID='city-weather-card-detail-modal-degreeText'>{city.temp_c}°C</Text></Text>
                 <CityWeatherDetail darkMode={darkModeEnabled} city={city}></CityWeatherDetail>
             </View>
         </Modal>

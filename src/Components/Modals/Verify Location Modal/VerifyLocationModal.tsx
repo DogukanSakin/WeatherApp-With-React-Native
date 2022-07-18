@@ -44,12 +44,10 @@ const VerifyLocationModal:FC<IVerifyLocationModalProps>=({isVisible,onClose,loca
                 const dataDetail:any={
                     cityName:parsedData[0]['location'].name,
                     temp_c:parsedData[0]['current'].temp_c,
-                    temp_f:parsedData[0]['current'].temp_f,
                     conditionText:parsedData[0]['current'].condition.text,
                     wind:parsedData[0]['current'].wind_kph,
                     humidity:parsedData[0]['current'].humidity,
                     feelsLike_c:parsedData[0]['current'].feelslike_c,
-                    feelsLike_f:parsedData[0]['current'].feelslike_f,
                     visibility: parsedData[0]['current'].vis_km,
                     country:parsedData[0]['location'].country,
                 };
@@ -82,7 +80,7 @@ const VerifyLocationModal:FC<IVerifyLocationModalProps>=({isVisible,onClose,loca
                         <Text style={modalTheme.cityNameText}>{userLocationData.cityName} <Text style={modalTheme.degreeText}>{userLocationData.temp_c}°C</Text></Text>
                         <CityWeatherDetail darkMode={darkModeEnabled} city={userLocationData}></CityWeatherDetail>
                     </View>
-                    <Button buttonTitle='This is my current location' onPress={handleSaveUserCurrentLocation}></Button>
+                    <Button buttonTitle='This is my current location' onPress={handleSaveUserCurrentLocation} testID='verify-location-modal-button'></Button>
                 </View> 
             :null}
             

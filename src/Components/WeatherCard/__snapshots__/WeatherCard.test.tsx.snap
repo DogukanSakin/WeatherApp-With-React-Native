@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match with snapshot 1`] = `
+<View
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+  testID="weather-card-touchable"
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#F5F4F4",
+        "borderRadius": 50,
+        "flexDirection": "row",
+        "margin": 15,
+        "marginBottom": 7,
+        "marginTop": 7,
+        "padding": 10,
+        "paddingLeft": 10,
+        "paddingRight": 10,
+      }
+    }
+    testID="weather-card-container"
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../assets/icons/Sunny.png",
+        }
+      }
+      style={
+        Object {
+          "height": 50,
+          "width": 50,
+        }
+      }
+      testID="weather-card-icon"
+    />
+    <Text
+      style={
+        Object {
+          "color": "#161616",
+          "flex": 1,
+          "fontFamily": "OpenSans-Light",
+          "fontSize": 25,
+          "textAlign": "center",
+        }
+      }
+      testID="weather-card-cityText"
+    >
+      TestCity
+    </Text>
+    <Text
+      style={
+        Object {
+          "color": "#161616",
+          "fontFamily": "OpenSans-Light",
+          "fontSize": 25,
+        }
+      }
+      testID="weather-card-degreeText"
+    >
+      20
+      °C
+    </Text>
+  </View>
+</View>
+`;

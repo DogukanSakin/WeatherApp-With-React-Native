@@ -11,11 +11,11 @@ const WeatherCard : FC<ICardProps>=({darkMode=false,city,onTap})=>{
     let icon = iconParser(city.conditionText);
     const cardStyle=styles(darkMode);
     return(
-        <TouchableOpacity onPress={onTap}>
-            <View style={cardStyle.container}>
-                <Image source={icon} style={cardStyle.cardIcon}></Image>
-                <Text style={cardStyle.cityText}>{city.cityName}</Text>
-                <Text style={cardStyle.degreeText}>{city.temp_c}°C</Text>
+        <TouchableOpacity onPress={onTap} testID='weather-card-touchable'>
+            <View style={cardStyle.container} testID='weather-card-container'>
+                <Image source={icon} style={cardStyle.cardIcon} testID='weather-card-icon'></Image>
+                <Text style={cardStyle.cityText} testID='weather-card-cityText'>{city.cityName}</Text>
+                <Text style={cardStyle.degreeText} testID='weather-card-degreeText'>{city.temp_c}°C</Text>
             </View>
         </TouchableOpacity>
     )

@@ -68,6 +68,22 @@ export const styles = (darkMode:boolean)=>StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
        
+    },
+    addLocationInnerContainer:{
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    plusIconStyle:{
+        backgroundColor:darkMode?darkTheme.darkerGreyColor:lightTheme.darkerGreyColor,
+        borderRadius:50,
+        padding:10,
+        marginTop:15
+    },
+    addLocationText:{
+        fontFamily:Fonts.lightFont,
+        color:darkMode?darkTheme.componentColor:lightTheme.componentColor,
+        fontSize:30,
+        marginTop:15
     }
     
 

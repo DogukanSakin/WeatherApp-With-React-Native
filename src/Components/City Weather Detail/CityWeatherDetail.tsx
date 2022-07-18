@@ -11,26 +11,26 @@ const CityWeatherDetailCard:FC<ICardProps>=({darkMode,city})=>{
     return(
         <>
         <View style={cardColors.weatherDetailContainer}>
-            <Icon name='earth' size={20} color='#5BA7FB'></Icon>
-            <Text style={cardColors.weatherDetailText}>{city.country}</Text>
+            <Icon name='earth' size={20} color='#5BA7FB' testID='weather-detail-card-earth-icon'></Icon>
+            <Text style={cardColors.weatherDetailText} testID='weather-detail-card-country-text'>{city.country}</Text>
         </View>
         <View style={cardColors.weatherDetailContainer}>
             <View style={cardColors.weatherDetailCardContainer}>
                 <Icon name='eye' size={20} color='#5BA7FB'></Icon>
-                <Text style={cardColors.weatherDetailText}>Visibility {city.visibility} KM</Text>
+                <Text style={cardColors.weatherDetailText} testID='weather-detail-card-visibility-text'>Visibility {city.visibility} KM</Text>
             </View>
             <View style={cardColors.weatherDetailCardContainer}>
                 <Icon name='thermometer' size={20} color='#5BA7FB'></Icon>
-                <Text style={cardColors.weatherDetailText}>Feels {city.feelsLike_c}°C</Text>
+                <Text style={cardColors.weatherDetailText} testID='weather-detail-card-feels-text'>Feels {city.feelsLike_c}°C</Text>
             </View>
         </View><View style={cardColors.weatherDetailContainer}>
                 <View style={cardColors.weatherDetailCardContainer}>
                     <Icon name='waves' size={20} color='#5BA7FB'></Icon>
-                    <Text style={cardColors.weatherDetailText}>Humidity {city.humidity} KM</Text>
+                    <Text style={cardColors.weatherDetailText} testID='weather-detail-card-humidity-text'>Humidity {city.humidity} KM</Text>
                 </View>
                 <View style={cardColors.weatherDetailCardContainer}>
                     <Icon name='weather-windy' size={20} color='#5BA7FB'></Icon>
-                    <Text style={cardColors.weatherDetailText}>Wind {city.wind} KM</Text>
+                    <Text style={cardColors.weatherDetailText} testID='weather-detail-card-wind-text'>Wind {city.wind} KM</Text>
                 </View>
         </View></>
     )
