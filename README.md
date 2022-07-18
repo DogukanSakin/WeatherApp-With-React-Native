@@ -19,6 +19,7 @@ This app is a simple weather app that I developed using Typescript during my lea
 - [Vector Icons](https://github.com/oblador/react-native-vector-icons) for icons
 - [React Native Async Store](https://react-native-async-storage.github.io/async-storage/) for store location and store theme preference
 - [React Native Get Location](https://www.npmjs.com/package/react-native-get-location) for get user location
+- [React Native Modal](https://reactnative.dev/docs/modal) for bottom screen
 
 ## ScreenShoots from Real Android Device
 <div align='center'>
