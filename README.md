@@ -20,7 +20,7 @@ This app is a simple weather app that I developed using Typescript during my lea
 - [React Native Async Store](https://react-native-async-storage.github.io/async-storage/) for store location and store theme preference
 - [React Native Get Location](https://www.npmjs.com/package/react-native-get-location) for get user location
 - [React Native Modal](https://reactnative.dev/docs/modal) for bottom screen
-
+- [React Native Testing Library](https://testing-library.com/docs/react-native-testing-library/intro/) for testing
 ## ScreenShoots from Real Android Device
 <div align='center'>
    <img src="https://user-images.githubusercontent.com/86911611/179504352-0eb16cc4-65a2-4a51-adf1-dc82f76e796d.jpg" width="400" height="900" /><img/>
