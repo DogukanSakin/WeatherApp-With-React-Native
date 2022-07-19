@@ -7,8 +7,8 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector,useDispatch } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import GetLocation from 'react-native-get-location'
 import VerifyLocationModal from '../../Components/Modals/Verify Location Modal';
+import getLocation from '../../Utils/getLocation';
 const WelcomePage =()=>{
     const darkMode=useSelector((selector:any)=>selector.isDarkModeEnabled);
     const [verifyLocationModalVisible,setVerifyLocationModalVisible]=useState<boolean>(false);
@@ -18,6 +18,9 @@ const WelcomePage =()=>{
     const [darkModeEnabled,setDarkModeEnabled]=useState<boolean>(false);
     const themeColors=styles(darkModeEnabled);
     const navigation = useNavigation<homeScreenProp>();
+    useEffect(()=>{
+        getThemeData();
+    },[]);
     function handleVerifyModalVisible() {
         setVerifyLocationModalVisible(!verifyLocationModalVisible);
     }
@@ -31,40 +34,13 @@ const WelcomePage =()=>{
         jsonValue=jsonValue != null ? JSON.parse(jsonValue) : false;
         setDarkModeEnabled(jsonValue);
     }
-    useEffect(()=>{
-        getThemeData();
-    },[]);
     async function handleGetUserLocation(){
         setUserLocationData(null);
-        GetLocation.getCurrentPosition({
-            enableHighAccuracy: true,
-            timeout: 15000,
-        })
-        .then(location => {
-            setUserLocationData(location);
-            handleVerifyModalVisible();
-        })
-        .catch(error => {
-            const { code, message } = error;
-            console.warn(code, message);
-        })
+        let userLocationData=await getLocation();
+        setUserLocationData(userLocationData);
+        handleVerifyModalVisible();
+       
     }
-    
-    async function requestLocationPermission() {
-        try {
-          const granted = await PermissionsAndroid.request(
-            PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-            
-          )
-          if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-            handleGetUserLocation();
-          } else {
-            console.log("Location permission denied")
-          }
-        } catch (err) {
-          console.warn(err)
-        }
-      }
     
     return(
         
@@ -77,7 +53,7 @@ const WelcomePage =()=>{
             </View>
             <Text style={themeColors.welcomeText}>Welcome to WeatherApp.</Text>
             <Text style={themeColors.welcomeText}>So let’s started!</Text>
-            <Button buttonTitle='Get my location' theme='primary' onPress={requestLocationPermission}></Button>
+            <Button buttonTitle='Get my location' theme='primary' onPress={handleGetUserLocation}></Button>
             <Button buttonTitle='Skip for now' theme='secondary'onPress={() => navigation.navigate('Home')}></Button>
             <View style={themeColors.isDarkModeEnabledSwitchContainer}>
                 <Switch testID='welcome-page-switch' onValueChange={enabledDarkMode} value={darkModeEnabled}

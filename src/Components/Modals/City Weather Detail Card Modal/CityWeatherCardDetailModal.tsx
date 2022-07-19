@@ -1,3 +1,6 @@
+/**
+ * When you tap on the card that appears after this modal search result, this modal that shows the weather details of that city. 
+ */
 import React,{FC,useEffect,useState} from 'react';
 import { Text,View,Image } from 'react-native';
 import Modal from "react-native-modal";
@@ -5,13 +8,11 @@ import {styles} from './CityWeatherCardDetailModal.style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CityWeatherDetail from '../../City Weather Detail';
 import iconParser from '../../../Utils/iconParser';
-
 interface IModalProps{
     isVisible:boolean;
     onClose:()=>void;
     city:any;
 }
-
 const CityWeatherDetailCardModal:FC<IModalProps>=({isVisible,onClose,city})=>{
     let icon=iconParser(city.conditionText);
     const [darkModeEnabled,setDarkModeEnabled]=useState<boolean>(false);

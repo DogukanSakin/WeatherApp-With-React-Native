@@ -1,3 +1,6 @@
+/** 
+ * This component is the card shown to the user on the home page as a result of the search. 
+*/
 import React,{FC} from 'react';
 import { Text,View,Image,TouchableOpacity} from 'react-native';
 import iconParser from '../../Utils/iconParser';

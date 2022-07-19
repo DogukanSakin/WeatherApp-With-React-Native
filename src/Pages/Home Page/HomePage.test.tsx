@@ -7,7 +7,6 @@ import { initialState } from '../../Redux/ThemeStore';
 import { reducers } from '../../Redux/ThemeReducer';
 import { NavigationContainer } from '@react-navigation/native';
 import { lightTheme } from '../../Styles/Theme';
-import { act } from 'react-test-renderer';
 test('should be render page', () => { 
     render(
         <NavigationContainer>

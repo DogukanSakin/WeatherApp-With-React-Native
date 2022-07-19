@@ -1,5 +1,9 @@
+/**
+ *  This component is used in the weather condition of the user's city on the main page, in the detail modal in the search result and in the location verification modal. 
+ *  The component shows units such as feels, wind speed etc. 
+ */
 import React,{FC} from 'react';
-import {  Text,View,Image} from 'react-native';
+import { Text,View} from 'react-native';
 import {styles} from './CityWeatherDetail.style';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 interface ICardProps{

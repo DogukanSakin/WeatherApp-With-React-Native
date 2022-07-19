@@ -1,19 +1,18 @@
 import React,{useEffect,useState} from 'react';
-import { View,TextInput,Text,Image,ActivityIndicator, PermissionsAndroid  } from 'react-native';
+import { View,TextInput,Text,Image,ActivityIndicator  } from 'react-native';
 import {styles} from './HomePage.style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import WeatherCard from '../../Components/WeatherCard';
 import CityWeatherDetail from '../../Components/City Weather Detail';
-import Config from 'react-native-config';
-import axios from 'axios';
 import CityWeatherDetailCardModal from '../../Components/Modals/City Weather Detail Card Modal';
 import iconParser from '../../Utils/iconParser';
-import GetLocation from 'react-native-get-location'
 import VerifyLocationModal from '../../Components/Modals/Verify Location Modal';
 import { RootStackParamList } from '../RootStackParamList';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
+import getLocation from '../../Utils/getLocation';
+import getWeatherData from '../../Utils/getWeatherData';
 const HomePage=()=>{ 
     type homeScreenProp = NativeStackNavigationProp<RootStackParamList, 'Home'>;
     const navigation = useNavigation<homeScreenProp>();
@@ -28,10 +27,19 @@ const HomePage=()=>{
     const [userLocationWeatherDataIcon,setUserLocationWeatherIcon]=useState<any>();
     let themeComponentColor = darkModeEnabled? 'white': '#161616';  
     useEffect(()=>{
-        getThemeData();
-        getUserCurrentLocationCityWeatherData();
+        getAllData();
     },[]);
-    async function handleSearchCity(cityName:string,isFunctionFetchCurrentUserData=false){
+    async function getAllData() {
+        let themeData=await getData('@themeLocalData');
+        setDarkModeEnabled(themeData);
+        let userLocationData=await getData('@userLocationCityName');
+        handleSearchCity(userLocationData,true);
+    }
+    async function getData(key:string) {
+        let val:any = await AsyncStorage.getItem(key);     
+        return await JSON.parse(val);   
+    }
+    async function handleSearchCity(cityName:string,isFunctionFetchCurrentUserData:boolean=false){
         if(cityName=="" || cityName==null || cityName==undefined){
             setWeatherData(null);
         }
@@ -39,89 +47,35 @@ const HomePage=()=>{
             try {
                 setLoading(true);
                 setWeatherData(null);
-                const data:any = await axios.get(Config.SEARCH_CITY_API_URL+cityName);
-                const parsedData= Object.keys(data)
-                .map(function(key) {
-                return data[key];
-            });
-            const dataDetail:any={
-                cityName:parsedData[0]['location'].name,
-                temp_c:parsedData[0]['current'].temp_c,
-                conditionText:parsedData[0]['current'].condition.text,
-                wind:parsedData[0]['current'].wind_kph,
-                humidity:parsedData[0]['current'].humidity,
-                feelsLike_c:parsedData[0]['current'].feelslike_c,
-                visibility: parsedData[0]['current'].vis_km,
-                country:parsedData[0]['location'].country,
-            };
-            if(isFunctionFetchCurrentUserData==false){
-                setWeatherData(dataDetail);
-            }
-            else{
-                setCurrentUserCityWeatherData(dataDetail);
-                let icon =iconParser(dataDetail.conditionText);
-                setUserLocationWeatherIcon(icon);
-            }
-            
-            setLoading(false);     
+                let fetchedLocationWeatherData=await getWeatherData(cityName);
+                if(isFunctionFetchCurrentUserData==false){
+                    setWeatherData(fetchedLocationWeatherData);
+                }
+                else if(isFunctionFetchCurrentUserData==true){
+                    setCurrentUserCityWeatherData(fetchedLocationWeatherData);
+                    let icon =iconParser(fetchedLocationWeatherData.conditionText);
+                    setUserLocationWeatherIcon(icon);       
+                }   
+                setLoading(false);     
             } 
             catch (error) {
                 setWeatherData(null);
-                setLoading(false);
-                
-            }
-           
+                setLoading(false); 
+            }     
         }
-    }
-    async function getUserCurrentLocationCityWeatherData(){
-        let jsonValue:any = await AsyncStorage.getItem('@userLocationCityName')
-        jsonValue=jsonValue != null ? JSON.parse(jsonValue) : null;
-        handleSearchCity(jsonValue,true);
-    }
-    async function getThemeData(){
-        let jsonValue:any = await AsyncStorage.getItem('@themeLocalData')
-        jsonValue=jsonValue != null ? JSON.parse(jsonValue) : false;
-        setDarkModeEnabled(jsonValue);
     }
     function handleCityWeatherDetailModalVisible(){
         setCityWeatherDetailModalVisible(!cityWeatherDetailModalVisible);
     }
     async function handleGetUserLocation(){
         setUserLocationData(null);
-        GetLocation.getCurrentPosition({
-            enableHighAccuracy: true,
-            timeout: 15000,
-        })
-        .then(location => {
-            setUserLocationData(location);
-            handleVerifyModalVisible();
-        })
-        .catch(error => {
-            const { code, message } = error;
-            console.warn(code, message);
-        })
+        let userLocationData=await getLocation();
+        setUserLocationData(userLocationData);
+        handleVerifyModalVisible();  
     }
-    
-    async function requestLocationPermission() {
-        try {
-          const granted = await PermissionsAndroid.request(
-            PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-            
-          )
-          if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-            handleGetUserLocation();
-          } else {
-            console.log("Location permission denied")
-          }
-        } catch (err) {
-          console.warn(err)
-        }
-      }
-      function handleVerifyModalVisible() {
+    function handleVerifyModalVisible() {
         setVerifyLocationModalVisible(!verifyLocationModalVisible);
     }
-    
-    
     return(
         <View style={themeColors.container} testID='home-page-container'>
             <View style={themeColors.topBarInnerContainer}>
@@ -150,7 +104,7 @@ const HomePage=()=>{
             (
                 <View style={themeColors.userLocationContainer}>
                     <View style={themeColors.addLocationInnerContainer}>
-                        <Icon name='plus' style={themeColors.plusIconStyle} size={50} onPress={requestLocationPermission}></Icon>
+                        <Icon name='plus' style={themeColors.plusIconStyle} size={50} onPress={handleGetUserLocation}></Icon>
                         <Text style={themeColors.addLocationText}>Add your location</Text>
                     </View>
                 </View>

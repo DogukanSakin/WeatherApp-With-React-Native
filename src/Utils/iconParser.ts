@@ -1,3 +1,7 @@
+/**
+ * Using weather data, it returns the appropriate icon for use in the Image component. 
+ * @params {string} weather
+ */
 export default function(weather:string){
     if(weather=='Clear' || weather=='Sunny'){
         return require(`../../assets/icons/Sunny.png`);
